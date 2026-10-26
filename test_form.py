@@ -1,18 +1,18 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.edge.options import Options
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
 
 @pytest.fixture
 def driver():
                 #Selenium Manager will auto-download the appropriate driver
-    options = webdriver.EdgeOptions()
+    options = Options()
     options.add_argument("--headless")  # run without UI
     options.add_argument("--no-sandbox")  # required in many CI environments
     options.add_argument("--disable-dev-shm-usage")  # overcome limited /dev/shm size on Linux
  
-    driver = webdriver.Edge(options=options)
+    driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
